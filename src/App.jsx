@@ -3,6 +3,8 @@ import ListComponent from './components/ListComponents'
 import ThemeToggleButton from './components/ThemeToggleButton';
 import { useTheme } from './context/ThemeContext';
 import Tabs from './atoms/Tab';
+import Moon from './icons/Moon';
+import Sun from './icons/sun';
 
 function App() {
 
@@ -15,6 +17,7 @@ function App() {
   }, [theme]);
   return (
     <>
+   
       <ListComponent/>
       <ThemeToggleButton/>
       <Tabs>
