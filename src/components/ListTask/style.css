@@ -1,0 +1,140 @@
+/* Estilos generales para la lista */
+.todo-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .todo-list.light {
+    background-color: #f4f4f4;
+  }
+  
+  .todo-list.dark {
+    background-color: #121212;
+  }
+  
+  /* Elemento de lista */
+  .todo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, text-decoration 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .todo-list.light .todo-item {
+    background-color: #fff;
+    color: #000;
+  }
+  
+  .todo-list.dark .todo-item {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .todo-item.completed {
+    opacity: 0.7;
+  }
+  
+  /* Checkbox circular */
+  .checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  .checkbox-container input {
+    display: none; /* Ocultar checkbox por defecto */
+  }
+  
+  .checkbox-container .checkmark {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #007bff;
+    border-radius: 50%;
+    position: relative;
+    display: inline-block;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .todo-list.light .checkbox-container .checkmark {
+    border-color: #007bff;
+  }
+  
+  .todo-list.dark .checkbox-container .checkmark {
+    border-color: #80bfff;
+  }
+  
+  .checkbox-container input:checked + .checkmark {
+    background-color: #007bff;
+    border-color: #0056b3;
+  }
+  
+  .todo-list.dark .checkbox-container input:checked + .checkmark {
+    background-color: #80bfff;
+    border-color: #66aaff;
+  }
+  
+  .checkbox-container input:checked + .checkmark::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  /* Texto de la tarea */
+  .todo-text {
+    flex: 1;
+    margin-left: 10px;
+    font-size: 16px;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+  }
+  
+  .todo-item.completed .todo-text {
+    color: #888;
+    text-decoration: line-through;
+  }
+  
+  .todo-list.dark .todo-item.completed .todo-text {
+    color: #aaa;
+  }
+  
+  /* Botón */
+  .todo-item button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .todo-list.light .todo-item button {
+    background-color: #007bff;
+    color: #fff;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .todo-list.light .todo-item button:hover {
+    background-color: #0056b3;
+  }
+  
+  .todo-list.dark .todo-item button {
+    background-color: #444;
+    color: #fff;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .todo-list.dark .todo-item button:hover {
+    background-color: #333;
+  }
+  

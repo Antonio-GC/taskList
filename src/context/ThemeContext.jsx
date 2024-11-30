@@ -5,10 +5,10 @@ const ThemeContext = createContext();
 
 // Proveedor del contexto
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState('light'); // Estado del tema
 
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light')); // Cambia el tema
   };
 
   return (
@@ -18,7 +18,7 @@ export const ThemeProvider = ({ children }) => {
   );
 };
 
-// Hook personalizado para usar el contexto
+// Hook para usar el contexto
 export const useTheme = () => {
   return useContext(ThemeContext);
 };

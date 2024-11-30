@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import "./style.css"
+import { useTheme } from '../../context/ThemeContext';
+import './style.css';
 
 const Tabs = ({ children }) => {
   const [activeTab, setActiveTab] = useState(0);
+  const { theme } = useTheme(); // Obtener el tema actual
 
   const handleTabClick = (index) => {
     setActiveTab(index);
   };
 
   return (
-    <div>
+    <div className={`tabs-container ${theme}`}>
       {/* Contenedor de las pestañas */}
       <div className="tabs-header">
         {React.Children.map(children, (child, index) => (

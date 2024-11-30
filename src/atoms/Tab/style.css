@@ -1,33 +1,55 @@
+/* Contenedor general */
+.tabs-container.light {
+  background-color: #f4f4f4;
+  color: #000;
+}
+
+.tabs-container.dark {
+  background-color: #121212;
+  color: #fff;
+}
+
+/* Encabezado de pestañas */
 .tabs-header {
-    display: flex;
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 1rem;
-  }
-  
-  .tab-button {
-    padding: 10px 20px;
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    border-bottom: 2px solid transparent;
-    transition: border-bottom 0.3s ease;
-  }
-  
-  .tab-button:hover {
-    border-bottom: 2px solid #007bff;
-  }
-  
-  .tab-button.active {
-    border-bottom: 2px solid #007bff;
-    font-weight: bold;
-  }
-  
-  .tabs-content {
-    padding: 10px;
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
+  display: flex;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Botón de pestaña */
+.tab-button {
+  flex: 1;
+  padding: 10px 20px;
+  border: none;
+  background-color: transparent;
+  color: inherit;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.tab-button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.tabs-container.dark .tab-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Botón activo */
+.tab-button.active {
+  border-bottom: 3px solid #007bff;
+  color: #007bff;
+}
+
+.tabs-container.dark .tab-button.active {
+  color: #80bfff;
+  border-color: #80bfff;
+}
+
+/* Contenido de las pestañas */
+.tabs-content {
+  padding: 20px;
+  font-size: 16px;
+  line-height: 1.5;
+}
