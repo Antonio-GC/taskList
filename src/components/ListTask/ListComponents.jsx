@@ -43,29 +43,34 @@ const ListComponent = () => {
       <Tabs.Tab label="Por hacer">
       <ul className={`todo-list ${theme}`}>
       {items.map((item) => (
-        <li key={item.id} className={`todo-item ${item.completed ? 'completed' : ''}`}>
-          <label className="checkbox-container">
-            <input
-              type="checkbox"
-              checked={item.completed}
-              onChange={() => handleCompleteTask(item.id)}
-            />
-            <span className="checkmark"></span>
-          </label>
-          <span className="todo-text">{item.text}</span>
-       
-        </li>
-      ))}
+    <li key={item.id} className={`todo-item ${item.completed ? 'completed' : ''}`}>
+      <label className="checkbox-container">
+        <input
+          type="checkbox"
+          checked={completed.some((completedItem) => completedItem.id === item.id)}
+          onChange={() =>
+            completed.some((completedItem) => completedItem.id === item.id)
+              ? dispatch(uncompleteItem(item.id))
+              : dispatch(completeItem(item.id))
+          }
+        />
+        <span className="checkmark"></span>
+      </label>
+      <span className="todo-text">{item.text}</span>
+      <Button onClick={() => dispatch(removeItem(item.id))}>Eliminar</Button>
+    </li>
+  ))}
     </ul>
         </Tabs.Tab>
         <Tabs.Tab label="Terminadas">
         <ul>
-            {completed.map((item) => (
-              <li key={item.id}>
-                <span>{item.text}</span>
-                <Button onClick={() => handleRemoveTask(item.id)}>Eliminar</Button>
-              </li>
-            ))}
+        {completed.map((item) => (
+          <li key={item.id}>
+            {item.text}
+            <button onClick={() => dispatch(uncompleteItem(item.id))}>Desmarcar</button>
+            <button onClick={() => dispatch(removeItem(item.id))}>Eliminar</button>
+          </li>
+        ))}
           </ul>
         </Tabs.Tab>
       </Tabs>
