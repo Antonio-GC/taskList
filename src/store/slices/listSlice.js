@@ -13,8 +13,10 @@ const listSlice = createSlice({
       state.items.push(action.payload); // Agregar una tarea a la lista de pendientes
     },
     removeItem: (state, action) => {
-      state.items = state.items.filter((item) => item.id !== action.payload); // Eliminar de pendientes
-      state.completed = state.completed.filter((item) => item.id !== action.payload); // Eliminar de completadas
+      state.items = state.items.filter((item) => item.id !== action.payload); // Eliminar solo de la lista de pendientes
+    },
+    removeCompletedItem: (state, action) => {
+      state.completed = state.completed.filter((item) => item.id !== action.payload); // Eliminar solo de la lista de completadas
     },
     completeItem: (state, action) => {
       const itemToComplete = state.items.find((item) => item.id === action.payload);
@@ -50,7 +52,7 @@ const listSlice = createSlice({
 });
 
 // Exportar las acciones
-export const { addItem, removeItem, completeItem, uncompleteItem, toggleComplete, clearList } = listSlice.actions;
+export const { addItem, removeItem, removeCompletedItem, completeItem, uncompleteItem, toggleComplete, clearList } = listSlice.actions;
 
 // Exportar el reducer
 export default listSlice.reducer;

@@ -1,6 +1,6 @@
 import  { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addItem, removeItem, uncompleteItem, completeItem } from '../../store/slices/listSlice';
+import { addItem, removeItem, removeCompletedItem, uncompleteItem, completeItem } from '../../store/slices/listSlice';
 import Button from '../../atoms/Button';
 import Input from '../../atoms/Input';
 import Tabs from '../../atoms/Tab';
@@ -71,7 +71,7 @@ const ListComponent = () => {
                   </span>
                 </label>
                 <span className="todo-text">{item.text}</span>
-                <Button onClick={() => dispatch(removeItem(item.id))}>Eliminar</Button>
+                <Button onClick={() => dispatch(removeCompletedItem(item.id))}>Eliminar</Button>
               </li>
             ))}
           </ul>
