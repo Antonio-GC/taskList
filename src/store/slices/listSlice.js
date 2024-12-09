@@ -21,24 +21,36 @@ const listSlice = createSlice({
       if (itemToComplete) {
         const alreadyCompleted = state.completed.find((item) => item.id === action.payload);
         if (!alreadyCompleted) {
-          // Solo agrega a completadas si no está ya allí
-          state.completed.push({ ...itemToComplete, completed: true });
+          state.completed.push({ ...itemToComplete, completed: true }); // Agregar a completadas
         }
       }
     },
     uncompleteItem: (state, action) => {
-      // Lógica para desmarcar una tarea completada
-      state.completed = state.completed.filter((item) => item.id !== action.payload);
+      const itemToUncomplete = state.completed.find((item) => item.id === action.payload);
+      if (itemToUncomplete) {
+        state.completed = state.completed.filter((item) => item.id !== action.payload); // Quitar de completadas
+      }
+    },
+    toggleComplete: (state, action) => {
+      const itemInCompleted = state.completed.find((item) => item.id === action.payload);
+      if (itemInCompleted) {
+        state.completed = state.completed.filter((item) => item.id !== action.payload); // Quitar de completadas
+      } else {
+        const itemInPending = state.items.find((item) => item.id === action.payload);
+        if (itemInPending) {
+          state.completed.push({ ...itemInPending, completed: true }); // Agregar a completadas
+        }
+      }
     },
     clearList: (state) => {
-      state.items = []; // Vaciar la lista de pendientes
-      state.completed = []; // Vaciar la lista de completadas
+      state.items = []; // Vaciar pendientes
+      state.completed = []; // Vaciar completadas
     },
   },
 });
 
 // Exportar las acciones
-export const { addItem, removeItem, completeItem, uncompleteItem, clearList } = listSlice.actions;
+export const { addItem, removeItem, completeItem, uncompleteItem, toggleComplete, clearList } = listSlice.actions;
 
 // Exportar el reducer
 export default listSlice.reducer;

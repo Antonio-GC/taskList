@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeItem, addItem, clearList, completeItem } from '../../store/slices/listSlice';
+import { addItem, removeItem, uncompleteItem, completeItem } from '../../store/slices/listSlice';
 import Button from '../../atoms/Button';
 import Input from '../../atoms/Input';
 import Tabs from '../../atoms/Tab';
-import "./style.css"
+import "./style.css";
 import { useTheme } from '../../context/ThemeContext';
-
+import CheckIcon from '../../icons/Check';
 
 const ListComponent = () => {
   const [taskText, setTaskText] = useState('');
@@ -21,14 +21,6 @@ const ListComponent = () => {
     }
   };
 
-  const handleRemoveTask = (id) => {
-    dispatch(removeItem(id));
-  };
-
-  const handleCompleteTask = (id) => {
-    dispatch(completeItem(id));
-  };
-
   return (
     <div>
       <h2>Lista de Tareas</h2>
@@ -40,37 +32,48 @@ const ListComponent = () => {
       />
       <Button onClick={handleAddTask}>Agregar</Button>
       <Tabs>
-      <Tabs.Tab label="Por hacer">
-      <ul className={`todo-list ${theme}`}>
-      {items.map((item) => (
-    <li key={item.id} className={`todo-item ${item.completed ? 'completed' : ''}`}>
-      <label className="checkbox-container">
-        <input
-          type="checkbox"
-          checked={completed.some((completedItem) => completedItem.id === item.id)}
-          onChange={() =>
-            completed.some((completedItem) => completedItem.id === item.id)
-              ? dispatch(uncompleteItem(item.id))
-              : dispatch(completeItem(item.id))
-          }
-        />
-        <span className="checkmark"></span>
-      </label>
-      <span className="todo-text">{item.text}</span>
-      <Button onClick={() => dispatch(removeItem(item.id))}>Eliminar</Button>
-    </li>
-  ))}
-    </ul>
+        <Tabs.Tab label="Por hacer">
+          <ul className={`todo-list ${theme}`}>
+            {items.map((item) => (
+              <li key={item.id} className={`todo-item ${item.completed ? 'completed' : ''}`}>
+                <label className="checkbox-container">
+                  <input
+                    type="checkbox"
+                    checked={completed.some((completedItem) => completedItem.id === item.id)}
+                    onChange={() =>
+                      completed.some((completedItem) => completedItem.id === item.id)
+                        ? dispatch(uncompleteItem(item.id))
+                        : dispatch(completeItem(item.id))
+                    }
+                  />
+                  <span className="checkmark">
+                    {completed.some((completedItem) => completedItem.id === item.id) && <CheckIcon />}
+                  </span>
+                </label>
+                <span className="todo-text">{item.text}</span>
+                <Button onClick={() => dispatch(removeItem(item.id))}>Eliminar</Button>
+              </li>
+            ))}
+          </ul>
         </Tabs.Tab>
         <Tabs.Tab label="Terminadas">
-        <ul>
-        {completed.map((item) => (
-          <li key={item.id}>
-            {item.text}
-            <button onClick={() => dispatch(uncompleteItem(item.id))}>Desmarcar</button>
-            <button onClick={() => dispatch(removeItem(item.id))}>Eliminar</button>
-          </li>
-        ))}
+          <ul className={`todo-list ${theme}`}>
+            {completed.map((item) => (
+              <li key={item.id} className="todo-item completed">
+                <label className="checkbox-container">
+                  <input
+                    type="checkbox"
+                    checked
+                    onChange={() => dispatch(uncompleteItem(item.id))}
+                  />
+                  <span className="checkmark">
+                    <CheckIcon />
+                  </span>
+                </label>
+                <span className="todo-text">{item.text}</span>
+                <Button onClick={() => dispatch(removeItem(item.id))}>Eliminar</Button>
+              </li>
+            ))}
           </ul>
         </Tabs.Tab>
       </Tabs>
