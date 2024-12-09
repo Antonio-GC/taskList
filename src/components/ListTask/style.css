@@ -25,8 +25,17 @@
   transition: background-color 0.3s ease, text-decoration 0.3s ease;
 }
 
+.todo-list.dark .todo-item {
+  background-color: #1e1e1e; /* Fondo oscuro para tema oscuro */
+  color: #e0e0e0; /* Texto claro para tema oscuro */
+}
+
 .todo-item.completed {
   background-color: #d4f0dc; /* Verde claro */
+}
+
+.todo-list.dark .todo-item.completed {
+  background-color: #2e7d32; /* Verde oscuro para tema oscuro */
 }
 
 /* Texto de la tarea */
@@ -40,6 +49,10 @@
 .todo-item.completed .todo-text {
   text-decoration: line-through;
   color: #a0a0a0;
+}
+
+.todo-list.dark .todo-item.completed .todo-text {
+  color: #7a7a7a; /* Texto más claro para tema oscuro */
 }
 
 /* Contenedor del checkbox */
@@ -67,6 +80,11 @@
   border-radius: 50%;
   background-color: #f4f4f4;
   transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.todo-list.dark .checkmark {
+  background-color: #1e1e1e; /* Fondo oscuro para checkmark */
+  border-color: #007bff; /* Borde azul para tema oscuro */
 }
 
 /* Cambiar estilo al estar completado */
